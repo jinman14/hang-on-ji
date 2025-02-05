@@ -102,10 +102,24 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+var mainPoster = document.querySelector('.main-poster')
+var makeOwn = document.querySelector('.poster-form')
+var savedPosters = document.querySelector('.saved-posters')
+
 var showRandomBtn = document.querySelector('.show-random')
+var makeOwnBtn = document.querySelector('.show-form')
+var neverMindBtn = document.querySelector('.show-main')
+var savedPostersBtn = document.querySelector('.show-saved')
+var backToMainBtn = document.querySelector('.back-to-main')
+
 
 // event listeners go here 👇
+// Button Events
 showRandomBtn.addEventListener("click", loadRandomPoster)
+makeOwnBtn.addEventListener('click', openMakeOwn)
+neverMindBtn.addEventListener('click', neverMind)
+savedPostersBtn.addEventListener('click', openSavedPosters)
+backToMainBtn.addEventListener('click', backToMain)
 
 
 
@@ -135,30 +149,6 @@ function loadRandomPoster() {
   
   currentPoster = createPoster(randomImage, randomTitle, randomQuote);
 }
-  
-window.onload = loadRandomPoster;
-
-  
-//WORKSHOP
-//Iteration 1 objectives: Make Own Poster button opens form and hides main poster.
-// Show Saved Poster button should open all saved posters and main poster should be hidden
-// Nevermind and Back to Main buttons should show only the main poster
-//notes: we aren't navigating to diffferent pages, we are hiding and unhiding sections.
-//toggle visibility
-
-var makeOwnBtn = document.querySelector('.show-form')
-var neverMindBtn = document.querySelector('.show-main')
-var savedPostersBtn = document.querySelector('.show-saved')
-var backToMainBtn = document.querySelector('.back-to-main')
-
-var mainPoster = document.querySelector('.main-poster')
-var makeOwn = document.querySelector('.poster-form')
-var savedPosters = document.querySelector('.saved-posters')
-
-makeOwnBtn.addEventListener('click', openMakeOwn)
-neverMindBtn.addEventListener('click', neverMind)
-savedPostersBtn.addEventListener('click', openSavedPosters)
-backToMainBtn.addEventListener('click', backToMain)
 
 function openMakeOwn() {
   mainPoster.classList.add('hidden')
@@ -179,4 +169,9 @@ function backToMain() {
   savedPosters.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
-  
+
+window.onload = loadRandomPoster;
+
+//WORKSHOP
+
+
