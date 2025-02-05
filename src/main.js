@@ -173,5 +173,36 @@ function backToMain() {
 window.onload = loadRandomPoster;
 
 //WORKSHOP
+//input fill 3 fields, hit show my poster button and see it. (gunna need event.preventDefault())
+//step by step: values input create new, unique poster object and save it as value of currentPoster
+//save the submitted data into the respective arrays so future posters can use it
+//change back to main poster page and see the new poster made
+// step 1: vars for input fields
+// step 2: event listeners for make poster
+// step 3: function to replace values in with inputs
 
+var PicInput = document.querySelector('#poster-image-url')
+var TitleInput = document.querySelector('#poster-title')
+var QuoteInput = document.querySelector('#poster-quote')
 
+var showMyPosterBtn = document.querySelector('.make-poster')
+
+showMyPosterBtn.addEventListener('click', makePoster)
+
+function makePoster() {
+
+  event.preventDefault()
+
+  var imageURL = PicInput.value
+  var title = TitleInput.value
+  var quote = QuoteInput.value
+
+  currentPoster = createPoster(imageURL, title, quote)
+
+  document.querySelector('.poster-img').src = currentPoster.imageURL;
+  document.querySelector('.poster-title').textContent = currentPoster.title;
+  document.querySelector('.poster-quote').textContent = currentPoster.quote;
+
+  makeOwn.classList.add('hidden')
+  mainPoster.classList.remove('hidden')
+}
