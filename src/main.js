@@ -120,24 +120,34 @@ function createPoster(imageURL, title, quote) {
     id: Date.now(), 
     imageURL: imageURL, 
     title: title, 
-    quote: quote}
+    quote: quote
   }
+}
   
-  function loadRandomPoster() {
-    const randomImage = images[getRandomIndex(images)];
-    const randomTitle = titles[getRandomIndex(titles)];
-    const randomQuote = quotes[getRandomIndex(quotes)];
+function loadRandomPoster() {
+  const randomImage = images[getRandomIndex(images)];
+  const randomTitle = titles[getRandomIndex(titles)];
+  const randomQuote = quotes[getRandomIndex(quotes)];
   
-    document.querySelector('.poster-img').src = randomImage;
-    document.querySelector('.poster-title').textContent = randomTitle;
-    document.querySelector('.poster-quote').textContent = randomQuote;
+  document.querySelector('.poster-img').src = randomImage;
+  document.querySelector('.poster-title').textContent = randomTitle;
+  document.querySelector('.poster-quote').textContent = randomQuote;
   
-    currentPoster = createPoster(randomImage, randomTitle, randomQuote);
-  }
+  currentPoster = createPoster(randomImage, randomTitle, randomQuote);
+}
   
-  window.onload = loadRandomPoster;
+window.onload = loadRandomPoster;
+
   
-  
-  //WORKSHOP
-  
+//WORKSHOP
+//Iteration 1 objectives: Make Own Poster button opens form and hides main poster.
+// Show Saved Poster button should open all saved posters and main poster should be hidden
+// Nevermind and Back to Main buttons should show only the main poster
+//notes: we aren't navigating to diffferent pages, we are hiding and unhiding sections.
+//toggle visibility
+
+var makeOwnBtn = document.querySelector('.show-form')
+var savedPostersBtn = document.querySelector('.show-saved')
+
+
   
