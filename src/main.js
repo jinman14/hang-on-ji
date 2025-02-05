@@ -147,17 +147,36 @@ window.onload = loadRandomPoster;
 //toggle visibility
 
 var makeOwnBtn = document.querySelector('.show-form')
+var neverMindBtn = document.querySelector('.show-main')
 var savedPostersBtn = document.querySelector('.show-saved')
+var backToMainBtn = document.querySelector('.back-to-main')
 
 var mainPoster = document.querySelector('.main-poster')
 var makeOwn = document.querySelector('.poster-form')
+var savedPosters = document.querySelector('.saved-posters')
 
 makeOwnBtn.addEventListener('click', openMakeOwn)
+neverMindBtn.addEventListener('click', neverMind)
+savedPostersBtn.addEventListener('click', openSavedPosters)
+backToMainBtn.addEventListener('click', backToMain)
 
 function openMakeOwn() {
   mainPoster.classList.add('hidden')
   makeOwn.classList.remove('hidden')
 }
 
+function neverMind() {
+  makeOwn.classList.add('hidden')
+  mainPoster.classList.remove('hidden')
+}
 
+function openSavedPosters() {
+  mainPoster.classList.add('hidden')
+  savedPosters.classList.remove('hidden')
+}
+
+function backToMain() {
+  savedPosters.classList.add('hidden')
+  mainPoster.classList.remove('hidden')
+}
   
