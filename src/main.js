@@ -149,5 +149,15 @@ window.onload = loadRandomPoster;
 var makeOwnBtn = document.querySelector('.show-form')
 var savedPostersBtn = document.querySelector('.show-saved')
 
+var mainPoster = document.querySelector('.main-poster')
+var makeOwn = document.querySelector('.poster-form')
+
+makeOwnBtn.addEventListener('click', openMakeOwn)
+
+function openMakeOwn() {
+  mainPoster.classList.add('hidden')
+  makeOwn.classList.remove('hidden')
+}
+
 
   
