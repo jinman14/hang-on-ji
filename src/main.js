@@ -102,7 +102,12 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+var showRandomBtn = document.querySelector('.show-random')
+
 // event listeners go here 👇
+showRandomBtn.addEventListener("click", loadRandomPoster)
+
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -116,4 +121,23 @@ function createPoster(imageURL, title, quote) {
     imageURL: imageURL, 
     title: title, 
     quote: quote}
-}
+  }
+  
+  function loadRandomPoster() {
+    const randomImage = images[getRandomIndex(images)];
+    const randomTitle = titles[getRandomIndex(titles)];
+    const randomQuote = quotes[getRandomIndex(quotes)];
+  
+    document.querySelector('.poster-img').src = randomImage;
+    document.querySelector('.poster-title').textContent = randomTitle;
+    document.querySelector('.poster-quote').textContent = randomQuote;
+  
+    currentPoster = createPoster(randomImage, randomTitle, randomQuote);
+  }
+  
+  window.onload = loadRandomPoster;
+  
+  
+  //WORKSHOP
+  
+  
