@@ -102,10 +102,24 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+var mainPoster = document.querySelector('.main-poster')
+var makeOwn = document.querySelector('.poster-form')
+var savedPosters = document.querySelector('.saved-posters')
+
 var showRandomBtn = document.querySelector('.show-random')
+var makeOwnBtn = document.querySelector('.show-form')
+var neverMindBtn = document.querySelector('.show-main')
+var savedPostersBtn = document.querySelector('.show-saved')
+var backToMainBtn = document.querySelector('.back-to-main')
+
 
 // event listeners go here 👇
+// Button Events
 showRandomBtn.addEventListener("click", loadRandomPoster)
+makeOwnBtn.addEventListener('click', openMakeOwn)
+neverMindBtn.addEventListener('click', neverMind)
+savedPostersBtn.addEventListener('click', openSavedPosters)
+backToMainBtn.addEventListener('click', backToMain)
 
 
 
@@ -120,24 +134,44 @@ function createPoster(imageURL, title, quote) {
     id: Date.now(), 
     imageURL: imageURL, 
     title: title, 
-    quote: quote}
+    quote: quote
   }
+}
   
-  function loadRandomPoster() {
-    const randomImage = images[getRandomIndex(images)];
-    const randomTitle = titles[getRandomIndex(titles)];
-    const randomQuote = quotes[getRandomIndex(quotes)];
+function loadRandomPoster() {
+  const randomImage = images[getRandomIndex(images)];
+  const randomTitle = titles[getRandomIndex(titles)];
+  const randomQuote = quotes[getRandomIndex(quotes)];
   
-    document.querySelector('.poster-img').src = randomImage;
-    document.querySelector('.poster-title').textContent = randomTitle;
-    document.querySelector('.poster-quote').textContent = randomQuote;
+  document.querySelector('.poster-img').src = randomImage;
+  document.querySelector('.poster-title').textContent = randomTitle;
+  document.querySelector('.poster-quote').textContent = randomQuote;
   
-    currentPoster = createPoster(randomImage, randomTitle, randomQuote);
-  }
-  
-  window.onload = loadRandomPoster;
-  
-  
-  //WORKSHOP
-  
-  
+  currentPoster = createPoster(randomImage, randomTitle, randomQuote);
+}
+
+function openMakeOwn() {
+  mainPoster.classList.add('hidden')
+  makeOwn.classList.remove('hidden')
+}
+
+function neverMind() {
+  makeOwn.classList.add('hidden')
+  mainPoster.classList.remove('hidden')
+}
+
+function openSavedPosters() {
+  mainPoster.classList.add('hidden')
+  savedPosters.classList.remove('hidden')
+}
+
+function backToMain() {
+  savedPosters.classList.add('hidden')
+  mainPoster.classList.remove('hidden')
+}
+
+window.onload = loadRandomPoster;
+
+//WORKSHOP
+
+
