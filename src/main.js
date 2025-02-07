@@ -214,5 +214,6 @@ saveBtn.addEventListener('click', savePoster)
 
 function savePoster() {
   console.log('bing!')
-  savedPosters.push(currentPoster);
+  if (!savedPosters.includes(currentPoster))
+    savedPosters.push(currentPoster);
 }
