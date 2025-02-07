@@ -116,6 +116,7 @@ var showMyPosterBtn = document.querySelector('.make-poster')
 var neverMindBtn = document.querySelector('.show-main')
 var savedPostersBtn = document.querySelector('.show-saved')
 var backToMainBtn = document.querySelector('.back-to-main')
+var saveBtn = document.querySelector('.save-poster')
 
 
 // event listeners go here 👇
@@ -126,6 +127,7 @@ showMyPosterBtn.addEventListener('click', makePoster)
 neverMindBtn.addEventListener('click', neverMind)
 savedPostersBtn.addEventListener('click', openSavedPosters)
 backToMainBtn.addEventListener('click', backToMain)
+saveBtn.addEventListener('click', savePoster)
 
 
 
@@ -194,6 +196,13 @@ function makePoster() {
   mainPoster.classList.remove('hidden')
 }
 
+function savePoster() {
+  console.log('bing!')
+  if (!savedPosters.includes(currentPoster))
+    savedPosters.push(currentPoster)
+    putInGrid(currentPoster);
+}
+
 window.onload = loadRandomPoster;
 
 //WORKSHOP
@@ -208,12 +217,16 @@ window.onload = loadRandomPoster;
 //new events: click on save poster button
 //new functions: save posters to posters array
 
-var saveBtn = document.querySelector('.save-poster')
+var postersGrid = document.querySelector('.saved-posters-grid')
 
-saveBtn.addEventListener('click', savePoster)
+function createPosterHTML(poster) {
+  return `<div class="mini-poster">\
+    <img src="${poster.imageURL}"/>\
+    <h2>${poster.title}</h2>\
+    <h4>${poster.quote}</h4>\
+  </div>`
+}
 
-function savePoster() {
-  console.log('bing!')
-  if (!savedPosters.includes(currentPoster))
-    savedPosters.push(currentPoster);
+function putInGrid(poster) {
+    postersGrid.innerHTML += createPosterHTML(poster)
 }
