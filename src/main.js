@@ -117,6 +117,7 @@ var neverMindBtn = document.querySelector('.show-main')
 var savedPostersBtn = document.querySelector('.show-saved')
 var backToMainBtn = document.querySelector('.back-to-main')
 var saveBtn = document.querySelector('.save-poster')
+var postersGrid = document.querySelector('.saved-posters-grid')
 
 
 // event listeners go here 👇
@@ -191,7 +192,7 @@ function makePoster() {
   document.querySelector('.poster-img').src = currentPoster.imageURL;
   document.querySelector('.poster-title').textContent = currentPoster.title;
   document.querySelector('.poster-quote').textContent = currentPoster.quote;
-
+  
   makeOwn.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
@@ -200,7 +201,19 @@ function savePoster() {
   console.log('bing!')
   if (!savedPosters.includes(currentPoster))
     savedPosters.push(currentPoster)
-    putInGrid(currentPoster);
+  putInGrid(currentPoster);
+}
+
+function createPosterHTML(poster) {
+  return `<div class="mini-poster">\
+    <img src="${poster.imageURL}"/>\
+    <h2>${poster.title}</h2>\
+    <h4>${poster.quote}</h4>\
+  </div>`
+}
+
+function putInGrid(poster) {
+    postersGrid.innerHTML += createPosterHTML(poster)
 }
 
 window.onload = loadRandomPoster;
@@ -217,16 +230,4 @@ window.onload = loadRandomPoster;
 //new events: click on save poster button
 //new functions: save posters to posters array
 
-var postersGrid = document.querySelector('.saved-posters-grid')
 
-function createPosterHTML(poster) {
-  return `<div class="mini-poster">\
-    <img src="${poster.imageURL}"/>\
-    <h2>${poster.title}</h2>\
-    <h4>${poster.quote}</h4>\
-  </div>`
-}
-
-function putInGrid(poster) {
-    postersGrid.innerHTML += createPosterHTML(poster)
-}
