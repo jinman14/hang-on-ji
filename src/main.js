@@ -108,7 +108,7 @@ var QuoteInput = document.querySelector('#poster-quote')
 
 var mainPoster = document.querySelector('.main-poster')
 var makeOwn = document.querySelector('.poster-form')
-var savedPosters = document.querySelector('.saved-posters')
+var savedPostersPage = document.querySelector('.saved-posters')
 
 var showRandomBtn = document.querySelector('.show-random')
 var makeOwnBtn = document.querySelector('.show-form')
@@ -116,6 +116,8 @@ var showMyPosterBtn = document.querySelector('.make-poster')
 var neverMindBtn = document.querySelector('.show-main')
 var savedPostersBtn = document.querySelector('.show-saved')
 var backToMainBtn = document.querySelector('.back-to-main')
+var saveBtn = document.querySelector('.save-poster')
+var postersGrid = document.querySelector('.saved-posters-grid')
 
 
 // event listeners go here 👇
@@ -126,6 +128,7 @@ showMyPosterBtn.addEventListener('click', makePoster)
 neverMindBtn.addEventListener('click', neverMind)
 savedPostersBtn.addEventListener('click', openSavedPosters)
 backToMainBtn.addEventListener('click', backToMain)
+saveBtn.addEventListener('click', savePoster)
 
 
 
@@ -168,11 +171,11 @@ function neverMind() {
 
 function openSavedPosters() {
   mainPoster.classList.add('hidden')
-  savedPosters.classList.remove('hidden')
+  savedPostersPage.classList.remove('hidden')
 }
 
 function backToMain() {
-  savedPosters.classList.add('hidden')
+  savedPostersPage.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
 
@@ -189,20 +192,42 @@ function makePoster() {
   document.querySelector('.poster-img').src = currentPoster.imageURL;
   document.querySelector('.poster-title').textContent = currentPoster.title;
   document.querySelector('.poster-quote').textContent = currentPoster.quote;
-
+  
   makeOwn.classList.add('hidden')
   mainPoster.classList.remove('hidden')
+}
+
+function savePoster() {
+  console.log('bing!')
+  if (!savedPosters.includes(currentPoster))
+    savedPosters.push(currentPoster)
+  putInGrid(currentPoster);
+}
+
+function createPosterHTML(poster) {
+  return `<div class="mini-poster">\
+    <img src="${poster.imageURL}"/>\
+    <h2>${poster.title}</h2>\
+    <h4>${poster.quote}</h4>\
+  </div>`
+}
+
+function putInGrid(poster) {
+    postersGrid.innerHTML += createPosterHTML(poster)
 }
 
 window.onload = loadRandomPoster;
 
 //WORKSHOP
-//input fill 3 fields, hit show my poster button and see it. (gunna need event.preventDefault())
-//step by step: values input create new, unique poster object and save it as value of currentPoster
-//save the submitted data into the respective arrays so future posters can use it
-//change back to main poster page and see the new poster made
-// step 1: vars for input fields
-// step 2: event listeners for make poster
-// step 3: function to replace values in with inputs
+//saving posters time. Click the button,
+//save the poster. It will then add to the
+//savedPosters array. It can only be added once though, so 
+//check if it is included before adding.
+//the SHow Saved POsters button should show all
+//displayed as mini posters
+//check styling, sizes, layouts of minis
+//new vars needed: save poster button
+//new events: click on save poster button
+//new functions: save posters to posters array
 
 
