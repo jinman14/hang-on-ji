@@ -298,6 +298,7 @@ function openSavedPosters() {
 }
 
 function backToMain() {
+  unmotivationalPostersPage.classList.add('hidden')
   savedPostersPage.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
@@ -344,18 +345,13 @@ window.onload = loadRandomPoster;
 //WORKSHOP
 
 var unmotivationalBtn = document.querySelector('.unmotivational')
-var unmotivationalPosters = document.querySelector('.unmotivational-posters')
+var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
 var returnMainUnmotiBtn = document.querySelector('.sad')
 
 unmotivationalBtn.addEventListener('click', bringDown)
-returnMainUnmotiBtn.addEventListener('click', bringUp)
+returnMainUnmotiBtn.addEventListener('click', backToMain)
 
 function bringDown() {
   mainPoster.classList.add('hidden')
-  unmotivationalPosters.classList.remove('hidden')
-}
-
-function bringUp() {
-  unmotivationalPosters.classList.add('hidden')
-  mainPoster.classList.remove('hidden')
+  unmotivationalPostersPage.classList.remove('hidden')
 }
