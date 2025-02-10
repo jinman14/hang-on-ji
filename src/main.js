@@ -355,3 +355,26 @@ function bringDown() {
   mainPoster.classList.add('hidden')
   unmotivationalPostersPage.classList.remove('hidden')
 }
+
+//part 2
+//need to clean the data in a function called clean data
+// need the name = title, description = quote, imgurl = picture
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cleanedPosters = cleanData();
+  console.log(cleanedPosters);
+})
+
+function cleanData() {
+  let cleanedUnmoposters = [];
+  for (let i = 0; i < unmotivationalPosters.length; i++) {
+    var imageURL = unmotivationalPosters[i].img_url;
+    var title = unmotivationalPosters[i].name;
+    var quote = unmotivationalPosters[i].description;
+
+    cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
+  }
+
+  return cleanedUnmoposters;
+}
+// createPoster(unmotivationalPosters[i].name, unmotivationalPosters[i].description, unmotivationalPosters[i].img_url)
