@@ -116,13 +116,6 @@ button:hover {
   padding: 20px;
 }
 
-.display-unmotivational-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  padding: 20px;
-}
-
 .mini-poster {
   background: black;
   color: white;
@@ -150,4 +143,26 @@ button:hover {
   letter-spacing: 5px;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+
+.display-unmotivational-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.display-unmotivational-grid .mini-poster {
+  background: gray;
+  color: white;
+  height: 340px;
+  padding: 25px;
+  width: 425px;
+}
+
+.display-unmotivational-grid .mini-poster h2 {
+  color: black;
+  line-height: 1;
+  width: 90%;
 }
