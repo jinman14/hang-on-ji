@@ -148,9 +148,11 @@ button:hover {
 .display-unmotivational-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  grid-gap: 20px;
+  justify-content: center;
+  grid-gap: 10px;
   padding: 20px;
+  height: auto;
+  object-fit: cover;
 }
 
 .display-unmotivational-grid .mini-poster {
@@ -159,6 +161,8 @@ button:hover {
   height: 340px;
   padding: 25px;
   width: 425px;
+  border-radius: 10px;
+  margin: 0;
 }
 
 .display-unmotivational-grid .mini-poster h2 {
