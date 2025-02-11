@@ -99,7 +99,131 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+let unmotivationalPosters = [
+  {
+    name: "FAILURE",
+    description: "Why bother trying? It's probably not worth it.",
+    price: 68.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/failure.jpg",
+  },
+  {
+    name: "MEDIOCRITY",
+    description: "Dreams are just that—dreams.",
+    price: 127.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/mediocrity.jpg",
+  },
+  {
+    name: "REGRET",
+    description: "Hard work rarely pays off.",
+    price: 89.00,
+    year: 2018,
+    vintage: true,
+    img_url:  "./assets/regret.jpg",
+  },
+  {
+    name: "FUTILITY",
+    description: "You're not good enough.",
+    price: 150.00,
+    year: 2016,
+    vintage: false,
+    img_url:  "./assets/futility.jpg",
+  },
+  {
+    name: "DEFEAT",
+    description: "It's too late to start now.",
+    price: 35.00,
+    year: 2023,
+    vintage: false,
+    img_url:  "./assets/defeat.jpg",
+  },
+  {
+    name: "HOPELESSNESS",
+    description: "Stay in your comfort zone; it's safer.",
+    price: 112.00,
+    year: 2020,
+    vintage: true,
+    img_url: "./assets/hopelessness.jpg",
+  },
+  {
+    name: "LAZINESS",
+    description: "You can't change anything.",
+    price: 25.00,
+    year: 2022,
+    vintage: false,
+    img_url: "./assets/laziness.jpg",
+  },
+  {
+    name: "PROCRASTINATION",
+    description: "Better to avoid failure by not trying at all.",
+    price: 48.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/procrastination.jpg",
+  },
+  {
+    name: "DESPAIR",
+    description: "Let someone else do it; you’ll just mess it up.",
+    price: 73.00,
+    year: 2015,
+    vintage: false,
+    img_url: "./assets/despair.jpg",
+  },
+  {
+    name: "NEGLECT",
+    description: "Happiness is overrated.",
+    price: 160.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/neglect.jpg",
+  },
+  {
+    name: "FEAR",
+    description: "Giving up is always an option.",
+    price: 91.00,
+    year: 2014,
+    vintage: false,
+    img_url: "./assets/fear.jpg",
+  },
+  {
+    name: "APATHY",
+    description: "No one cares about your effort.",
+    price: 110.00,
+    year: 2016,
+    vintage: true,
+    img_url: "./assets/apathy.jpg",
+  },
+  {
+    name: "MISERY",
+    description: "Why take risks when you can stay stagnant?",
+    price: 55.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/misery.jpg",
+  },
+  {
+    name: "BLAME",
+    description: "Expect disappointment and you'll never be disappointed.",
+    price: 39.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/blame.jpg",
+  },
+  {
+    name: "DOUBT",
+    description: "Success is for other people, not you.",
+    price: 140.00,
+    year: 2020,
+    vintage: false,
+    img_url: "./assets/doubt.jpg",
+  }
+];
+
 var savedPosters = [];
+var cleanedUnmoposters = [];
 var currentPoster;
 
 var PicInput = document.querySelector('#poster-image-url')
@@ -175,6 +299,7 @@ function openSavedPosters() {
 }
 
 function backToMain() {
+  unmotivationalPostersPage.classList.add('hidden')
   savedPostersPage.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
@@ -219,15 +344,46 @@ function putInGrid(poster) {
 window.onload = loadRandomPoster;
 
 //WORKSHOP
-//saving posters time. Click the button,
-//save the poster. It will then add to the
-//savedPosters array. It can only be added once though, so 
-//check if it is included before adding.
-//the SHow Saved POsters button should show all
-//displayed as mini posters
-//check styling, sizes, layouts of minis
-//new vars needed: save poster button
-//new events: click on save poster button
-//new functions: save posters to posters array
 
+var unmotivationalBtn = document.querySelector('.unmotivational')
+var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
+var returnMainUnmotiBtn = document.querySelector('.sad')
+var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
+
+unmotivationalBtn.addEventListener('click', bringDown)
+returnMainUnmotiBtn.addEventListener('click', backToMain)
+
+function bringDown() {
+  mainPoster.classList.add('hidden')
+  unmotivationalPostersPage.classList.remove('hidden')
+}
+
+//part 2
+//need to clean the data in a function called clean data
+// need the name = title, description = quote, imgurl = picture
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cleanedPosters = cleanData();
+  // console.log(cleanedPosters);
+})
+
+function putInUnmotiGrid(poster) {
+  for (let i = 0; i < poster.length; i++) {
+  unmotivationalGrid.innerHTML += createPosterHTML(poster[i])
+  }
+}
+
+function cleanData() {
+  for (let i = 0; i < unmotivationalPosters.length; i++) {
+    var imageURL = unmotivationalPosters[i].img_url;
+    var title = unmotivationalPosters[i].name;
+    var quote = unmotivationalPosters[i].description;
+
+    cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
+  }
+  putInUnmotiGrid(cleanedUnmoposters)
+}
+
+//part 3
+// turn the now cleaned data into a grid of posters
 
