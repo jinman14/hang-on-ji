@@ -348,6 +348,7 @@ window.onload = loadRandomPoster;
 var unmotivationalBtn = document.querySelector('.unmotivational')
 var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
 var returnMainUnmotiBtn = document.querySelector('.sad')
+var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
 
 unmotivationalBtn.addEventListener('click', bringDown)
 returnMainUnmotiBtn.addEventListener('click', backToMain)
@@ -386,4 +387,3 @@ function cleanData() {
 //part 3
 // turn the now cleaned data into a grid of posters
 
-var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
