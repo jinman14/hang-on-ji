@@ -145,6 +145,10 @@ button:hover {
   text-transform: uppercase;
 }
 
+.unmotivational-posters {
+  margin: 20px;
+}
+
 .display-unmotivational-grid {
   display: flex;
   flex-wrap: wrap;
