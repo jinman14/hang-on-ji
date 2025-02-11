@@ -243,6 +243,10 @@ var backToMainBtn = document.querySelector('.back-to-main')
 var saveBtn = document.querySelector('.save-poster')
 var postersGrid = document.querySelector('.saved-posters-grid')
 
+var unmotivationalBtn = document.querySelector('.unmotivational')
+var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
+var returnMainUnmotiBtn = document.querySelector('.sad')
+var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
 
 // event listeners go here 👇
 // Button Events
@@ -253,6 +257,13 @@ neverMindBtn.addEventListener('click', neverMind)
 savedPostersBtn.addEventListener('click', openSavedPosters)
 backToMainBtn.addEventListener('click', backToMain)
 saveBtn.addEventListener('click', savePoster)
+unmotivationalBtn.addEventListener('click', bringDown)
+returnMainUnmotiBtn.addEventListener('click', backToMain)
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cleanedPosters = cleanData();
+  // console.log(cleanedPosters);
+})
 
 
 
@@ -341,31 +352,10 @@ function putInGrid(poster) {
     postersGrid.innerHTML += createPosterHTML(poster)
 }
 
-window.onload = loadRandomPoster;
-
-//WORKSHOP
-
-var unmotivationalBtn = document.querySelector('.unmotivational')
-var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
-var returnMainUnmotiBtn = document.querySelector('.sad')
-var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
-
-unmotivationalBtn.addEventListener('click', bringDown)
-returnMainUnmotiBtn.addEventListener('click', backToMain)
-
 function bringDown() {
   mainPoster.classList.add('hidden')
   unmotivationalPostersPage.classList.remove('hidden')
 }
-
-//part 2
-//need to clean the data in a function called clean data
-// need the name = title, description = quote, imgurl = picture
-
-document.addEventListener('DOMContentLoaded', function() {
-  const cleanedPosters = cleanData();
-  // console.log(cleanedPosters);
-})
 
 function putInUnmotiGrid(poster) {
   for (let i = 0; i < poster.length; i++) {
@@ -384,6 +374,9 @@ function cleanData() {
   putInUnmotiGrid(cleanedUnmoposters)
 }
 
-//part 3
-// turn the now cleaned data into a grid of posters
+window.onload = loadRandomPoster;
+
+//WORKSHOP
+
+
 
