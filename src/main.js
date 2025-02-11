@@ -392,13 +392,7 @@ window.onload = loadRandomPoster;
 unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
 
 function deleteUnMo() {
+  console.log("double click worked, brought us here")
   var poster = event.target.closest('.mini-poster')
 
-  var title = poster.querySelector('h2').innerHTML;
-
-  cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
-    ![poster.title === title]
-  })
-
-  poster.remove()
 }
