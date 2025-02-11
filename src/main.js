@@ -340,7 +340,7 @@ function savePoster() {
     poster.title === currentPoster.title &&
     poster.quote === currentPoster.quote
   );
-  
+
   if (!repeat) {
     savedPosters.push(currentPoster)
   putInGrid(currentPoster);
@@ -383,7 +383,22 @@ function cleanData() {
 
 window.onload = loadRandomPoster;
 
-//WORKSHOP
+// -- WORKSHOP -- 
+// deleting unmotivational posters
+// double click and gone, anywhere on the poster, image, text or background
+// removed from cleaned unmotivational posters data set and no longer displayed
+// posters should stay gone even if navigate away and back
 
+unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
 
+function deleteUnMo() {
+  var poster = event.target.closest('.mini-poster')
 
+  var title = poster.querySelector('h2').innerHTML;
+
+  cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
+    ![poster.title === title]
+  })
+
+  poster.remove()
+}
