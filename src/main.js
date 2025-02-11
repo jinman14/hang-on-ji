@@ -223,6 +223,7 @@ let unmotivationalPosters = [
 ];
 
 var savedPosters = [];
+var cleanedUnmoposters = [];
 var currentPoster;
 
 var PicInput = document.querySelector('#poster-image-url')
@@ -362,11 +363,16 @@ function bringDown() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
-  console.log(cleanedPosters);
+  // console.log(cleanedPosters);
 })
 
+function putInUnmotiGrid(poster) {
+  for (let i = 0; i < poster.length; i++) {
+  unmotivationalGrid.innerHTML += createPosterHTML(poster[i])
+  }
+}
+
 function cleanData() {
-  let cleanedUnmoposters = [];
   for (let i = 0; i < unmotivationalPosters.length; i++) {
     var imageURL = unmotivationalPosters[i].img_url;
     var title = unmotivationalPosters[i].name;
@@ -374,7 +380,10 @@ function cleanData() {
 
     cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
   }
-
-  return cleanedUnmoposters;
+  putInUnmotiGrid(cleanedUnmoposters)
 }
-// createPoster(unmotivationalPosters[i].name, unmotivationalPosters[i].description, unmotivationalPosters[i].img_url)
+
+//part 3
+// turn the now cleaned data into a grid of posters
+
+var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
