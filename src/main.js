@@ -335,9 +335,16 @@ function makePoster() {
 
 function savePoster() {
   console.log('bing!')
-  if (!savedPosters.includes(currentPoster))
+  var repeat = savedPosters.some(poster =>
+    poster.imageURL === currentPoster.imageURL &&
+    poster.title === currentPoster.title &&
+    poster.quote === currentPoster.quote
+  );
+  
+  if (!repeat) {
     savedPosters.push(currentPoster)
   putInGrid(currentPoster);
+  }
 }
 
 function createPosterHTML(poster) {
