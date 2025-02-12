@@ -1,46 +1,29 @@
-# Hang In There
-
-A boilerplate repo. 
-
-## Set Up
-
-1. Fork this repository
-2. Clone down your new, forked repo
-3. `cd` into the repository
-4. Open it in your text editor
-5. Add the instructors as collaborators on the repository
-
-Project spec & rubric can be found [here](https://curriculum.turing.edu/module2/projects/hang_in_there/)
-
-To view your project:
-
-1. In your terminal, navigate to your project repo
-2. Run the command `open index.html`
-  
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
-______________________________________________________  
-
 # Hang in There  
 
 ### Abstract:
-[//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
+
+This code can display and create motivational posters. If you were ever feeling down or disappointed, you could come here to get some inspiration, randomly, or self generated. If you were ever feeling too happy, it could also offer a series of unmotivational posters, to help ground you.
 
 ### Installation Instructions:
-[//]: <> (What steps does a person have to take to get your app cloned down and running?)
+
+To open this, one would have to have to code on their system through cloning. When in the correct directory, they could type 'open index.html'.
 
 ### Preview of App:
-[//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off. gifs preferred!)
+
+![Unmotivational Poster Sample](readme-imgs/unmotivational-posters.png)
 
 ### Context:
-[//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
+
+We had from the first Monday of the Mod to the second Wednesday. Mod 2 started with a bang, learning JavaScript and HTML all while using it to build a project.
 
 ### Contributors:
-[//]: <> (Who worked on this application? Link to your GitHub. Consider also providing LinkedIn link)
+
+Me. https://github.com/jinman14/hang-on-ji/tree/main?tab=readme-ov-file
 
 ### Learning Goals:
-[//]: <> (What were the learning goals of this project? What tech did you work with?)
+
+The goal was to understand and start using HTML, JavaScript, and CSS, and see how to apply it in a possible real life situation/project. 
 
 ### Wins + Challenges:
-[//]: <> (What are 2-3 wins you have from this project? What were some challenges you faced - and how did you get over them?)
+
+Each time the image would appear, and the program would behave as hoped, there was a great feeling of satisfaction. Nailing the CSS at the end, and learning how to delete posters were both fun final challenges. Please don't make me do it again. With some online research and trial and error, both were solved to an acceptable level.
