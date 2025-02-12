@@ -1,7 +1,3 @@
-// query selector variables go here 👇
-
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -248,8 +244,6 @@ var unmotivationalPostersPage = document.querySelector('.unmotivational-posters'
 var returnMainUnmotiBtn = document.querySelector('.sad')
 var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
 
-// event listeners go here 👇
-// Button Events
 showRandomBtn.addEventListener("click", loadRandomPoster)
 makeOwnBtn.addEventListener('click', openMakeOwn)
 showMyPosterBtn.addEventListener('click', makePoster)
@@ -262,13 +256,8 @@ returnMainUnmotiBtn.addEventListener('click', backToMain)
 
 document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
-  // console.log(cleanedPosters);
 })
 
-
-
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -334,7 +323,6 @@ function makePoster() {
 }
 
 function savePoster() {
-  console.log('bing!')
   if (!savedPosters.includes(currentPoster))
     savedPosters.push(currentPoster)
   putInGrid(currentPoster);
@@ -375,8 +363,3 @@ function cleanData() {
 }
 
 window.onload = loadRandomPoster;
-
-//WORKSHOP
-
-
-
