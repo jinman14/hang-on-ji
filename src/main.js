@@ -1,3 +1,30 @@
+// Variables and Query Selectors
+var savedPosters = [];
+var cleanedUnmoposters = [];
+var currentPoster;
+
+var PicInput = document.querySelector('#poster-image-url')
+var TitleInput = document.querySelector('#poster-title')
+var QuoteInput = document.querySelector('#poster-quote')
+
+var mainPoster = document.querySelector('.main-poster')
+var makeOwn = document.querySelector('.poster-form')
+var savedPostersPage = document.querySelector('.saved-posters')
+var showRandomBtn = document.querySelector('.show-random')
+var makeOwnBtn = document.querySelector('.show-form')
+var showMyPosterBtn = document.querySelector('.make-poster')
+var neverMindBtn = document.querySelector('.show-main')
+var savedPostersBtn = document.querySelector('.show-saved')
+var backToMainBtn = document.querySelector('.back-to-main')
+var saveBtn = document.querySelector('.save-poster')
+var postersGrid = document.querySelector('.saved-posters-grid')
+
+var unmotivationalBtn = document.querySelector('.unmotivational')
+var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
+var returnMainUnmotiBtn = document.querySelector('.sad')
+var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
+
+//Data and Assets
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -218,31 +245,7 @@ let unmotivationalPosters = [
   }
 ];
 
-var savedPosters = [];
-var cleanedUnmoposters = [];
-var currentPoster;
-
-var PicInput = document.querySelector('#poster-image-url')
-var TitleInput = document.querySelector('#poster-title')
-var QuoteInput = document.querySelector('#poster-quote')
-
-var mainPoster = document.querySelector('.main-poster')
-var makeOwn = document.querySelector('.poster-form')
-var savedPostersPage = document.querySelector('.saved-posters')
-var showRandomBtn = document.querySelector('.show-random')
-var makeOwnBtn = document.querySelector('.show-form')
-var showMyPosterBtn = document.querySelector('.make-poster')
-var neverMindBtn = document.querySelector('.show-main')
-var savedPostersBtn = document.querySelector('.show-saved')
-var backToMainBtn = document.querySelector('.back-to-main')
-var saveBtn = document.querySelector('.save-poster')
-var postersGrid = document.querySelector('.saved-posters-grid')
-
-var unmotivationalBtn = document.querySelector('.unmotivational')
-var unmotivationalPostersPage = document.querySelector('.unmotivational-posters')
-var returnMainUnmotiBtn = document.querySelector('.sad')
-var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
-
+// EventListeners
 showRandomBtn.addEventListener("click", loadRandomPoster)
 makeOwnBtn.addEventListener('click', openMakeOwn)
 showMyPosterBtn.addEventListener('click', makePoster)
@@ -257,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
 })
 
-
+//Functions
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -298,6 +301,11 @@ function openSavedPosters() {
   savedPostersPage.classList.remove('hidden')
 }
 
+function bringDown() {
+  mainPoster.classList.add('hidden')
+  unmotivationalPostersPage.classList.remove('hidden')
+}
+
 function backToMain() {
   unmotivationalPostersPage.classList.add('hidden')
   savedPostersPage.classList.add('hidden')
@@ -331,7 +339,7 @@ function savePoster() {
 
   if (!repeat) {
     savedPosters.push(currentPoster)
-  putInGrid(currentPoster);
+    putInGrid(currentPoster);
   }
 }
 
@@ -343,21 +351,6 @@ function createPosterHTML(poster) {
   </div>`
 }
 
-function putInGrid(poster) {
-    postersGrid.innerHTML += createPosterHTML(poster)
-}
-
-function bringDown() {
-  mainPoster.classList.add('hidden')
-  unmotivationalPostersPage.classList.remove('hidden')
-}
-
-function putInUnmotiGrid(poster) {
-  for (let i = 0; i < poster.length; i++) {
-  unmotivationalGrid.innerHTML += createPosterHTML(poster[i])
-  }
-}
-
 function cleanData() {
   for (let i = 0; i < unmotivationalPosters.length; i++) {
     var imageURL = unmotivationalPosters[i].img_url;
@@ -367,6 +360,16 @@ function cleanData() {
     cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
   }
   putInUnmotiGrid(cleanedUnmoposters)
+}
+
+function putInGrid(poster) {
+    postersGrid.innerHTML += createPosterHTML(poster)
+}
+
+function putInUnmotiGrid(poster) {
+  for (let i = 0; i < poster.length; i++) {
+  unmotivationalGrid.innerHTML += createPosterHTML(poster[i])
+  }
 }
 
 function deleteUnMo() {
@@ -381,4 +384,5 @@ function deleteUnMo() {
   poster.remove()
 }
 
-window.onload = loadRandomPoster;
+// On Page Load
+loadRandomPoster()
