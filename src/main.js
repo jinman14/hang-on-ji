@@ -253,10 +253,11 @@ backToMainBtn.addEventListener('click', backToMain)
 saveBtn.addEventListener('click', savePoster)
 unmotivationalBtn.addEventListener('click', bringDown)
 returnMainUnmotiBtn.addEventListener('click', backToMain)
-
 document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
 })
+unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
+
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -323,13 +324,20 @@ function makePoster() {
 }
 
 function savePoster() {
-  if (!savedPosters.includes(currentPoster))
+  var repeat = savedPosters.some(poster =>
+    poster.imageURL === currentPoster.imageURL &&
+    poster.title === currentPoster.title &&
+    poster.quote === currentPoster.quote
+  );
+
+  if (!repeat) {
     savedPosters.push(currentPoster)
   putInGrid(currentPoster);
+  }
 }
 
 function createPosterHTML(poster) {
-  return `<div class="mini-poster">\
+  return `<div class="mini-poster" draggable="true">\
     <img src="${poster.imageURL}"/>\
     <h2>${poster.title}</h2>\
     <h4>${poster.quote}</h4>\
@@ -356,10 +364,22 @@ function cleanData() {
     var imageURL = unmotivationalPosters[i].img_url;
     var title = unmotivationalPosters[i].name;
     var quote = unmotivationalPosters[i].description;
-
+    
     cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
   }
   putInUnmotiGrid(cleanedUnmoposters)
+}
+
+function deleteUnMo() {
+  var poster = event.target.closest('.mini-poster')
+
+  var title = poster.querySelector('h2').innerHTML;
+
+  cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
+    ![poster.title] === title
+  })
+
+  poster.remove()
 }
 
 window.onload = loadRandomPoster;
