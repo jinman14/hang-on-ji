@@ -229,7 +229,6 @@ var QuoteInput = document.querySelector('#poster-quote')
 var mainPoster = document.querySelector('.main-poster')
 var makeOwn = document.querySelector('.poster-form')
 var savedPostersPage = document.querySelector('.saved-posters')
-
 var showRandomBtn = document.querySelector('.show-random')
 var makeOwnBtn = document.querySelector('.show-form')
 var showMyPosterBtn = document.querySelector('.make-poster')
