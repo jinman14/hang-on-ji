@@ -1,7 +1,3 @@
-// query selector variables go here 👇
-
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -248,8 +244,6 @@ var unmotivationalPostersPage = document.querySelector('.unmotivational-posters'
 var returnMainUnmotiBtn = document.querySelector('.sad')
 var unmotivationalGrid = document.querySelector('.display-unmotivational-grid')
 
-// event listeners go here 👇
-// Button Events
 showRandomBtn.addEventListener("click", loadRandomPoster)
 makeOwnBtn.addEventListener('click', openMakeOwn)
 showMyPosterBtn.addEventListener('click', makePoster)
@@ -259,16 +253,12 @@ backToMainBtn.addEventListener('click', backToMain)
 saveBtn.addEventListener('click', savePoster)
 unmotivationalBtn.addEventListener('click', bringDown)
 returnMainUnmotiBtn.addEventListener('click', backToMain)
-
 document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
-  // console.log(cleanedPosters);
 })
+unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
 
 
-
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -334,7 +324,6 @@ function makePoster() {
 }
 
 function savePoster() {
-  console.log('bing!')
   var repeat = savedPosters.some(poster =>
     poster.imageURL === currentPoster.imageURL &&
     poster.title === currentPoster.title &&
@@ -348,7 +337,7 @@ function savePoster() {
 }
 
 function createPosterHTML(poster) {
-  return `<div class="mini-poster">\
+  return `<div class="mini-poster" draggable="true">\
     <img src="${poster.imageURL}"/>\
     <h2>${poster.title}</h2>\
     <h4>${poster.quote}</h4>\
@@ -375,31 +364,86 @@ function cleanData() {
     var imageURL = unmotivationalPosters[i].img_url;
     var title = unmotivationalPosters[i].name;
     var quote = unmotivationalPosters[i].description;
-
+    
     cleanedUnmoposters.push({ imageURL: imageURL, title: title, quote: quote });
   }
   putInUnmotiGrid(cleanedUnmoposters)
 }
 
-window.onload = loadRandomPoster;
-
-// -- WORKSHOP -- 
-// deleting unmotivational posters
-// double click and gone, anywhere on the poster, image, text or background
-// removed from cleaned unmotivational posters data set and no longer displayed
-// posters should stay gone even if navigate away and back
-
-unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
-
 function deleteUnMo() {
-  console.log("double click worked, brought us here")
   var poster = event.target.closest('.mini-poster')
 
   var title = poster.querySelector('h2').innerHTML;
 
   cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
-    ![poster.title === title]
+    ![poster.title] === title
   })
 
   poster.remove()
+}
+
+window.onload = loadRandomPoster;
+
+//WORKSHOP
+
+postersGrid.addEventListener('dragstart', dragStart);
+postersGrid.addEventListener('dragover', dragOver);
+postersGrid.addEventListener('dragenter', dragEnter);
+postersGrid.addEventListener('dragleave', dragLeave);
+postersGrid.addEventListener('drop', drop);
+postersGrid.addEventListener('dragend', dragEnd);
+
+let draggedPoster = null;
+
+function dragStart(event) {
+  const target = event.target.closest('.mini-poster')
+  draggedPoster = event.target;
+  draggedPoster.style.opacity = '0.5';
+}
+
+function dragOver(event) {
+  event.preventDefault();
+}
+
+function dragEnter(event) {
+  const target = event.target.closest('.mini-poster')
+  if (target) {
+  event.target.classList.add('drag-over')
+  };
+}
+
+function dragLeave(event) {
+  const target = event.target.closest('.mini-poster')
+  if (target) {
+  event.target.classList.remove('drag-over')
+  }
+}
+
+function drop(event) {
+  event.preventDefault();
+
+  const target = event.target.closest('.mini-poster')
+
+  if (event.target && event.target !== draggedPoster) {
+    const allPosters = Array.from(postersGrid.querySelectorAll('mini-poster'));
+    const draggedIndex = allPosters.indexOf(draggedPoster);
+    const targetIndex = allPosters.indexOf(target);
+
+    if (draggedIndex < targetIndex) {
+      postersGrid.insertBefore(draggedPoster, target.nextSibling);
+    } else {
+      postersGrid.insertBefore(draggedPoster, target);
+    }
+  }
+
+  if (target) {
+  target.classList.remove('drag-over')
+  };
+}
+
+function dragEnd(event) {
+  if (draggedPoster) {
+  draggedPoster.style.opacity = '1';
+  draggedPoster = null;
+  }
 }
