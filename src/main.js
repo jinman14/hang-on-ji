@@ -252,10 +252,10 @@ backToMainBtn.addEventListener('click', backToMain)
 saveBtn.addEventListener('click', savePoster)
 unmotivationalBtn.addEventListener('click', bringDown)
 returnMainUnmotiBtn.addEventListener('click', backToMain)
+unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
 document.addEventListener('DOMContentLoaded', function() {
   const cleanedPosters = cleanData();
 })
-unmotivationalGrid.addEventListener('dblclick', deleteUnMo)
 
 
 function getRandomIndex(array) {
@@ -371,13 +371,13 @@ function cleanData() {
 
 function deleteUnMo() {
   var poster = event.target.closest('.mini-poster')
-
+  
   var title = poster.querySelector('h2').innerHTML;
-
+  
   cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
     ![poster.title] === title
   })
-
+  
   poster.remove()
 }
 
