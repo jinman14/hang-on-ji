@@ -382,13 +382,16 @@ function deleteUnMo() {
   var title = poster.querySelector('h2').innerHTML;
   
   cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
-    ![poster.title] === title
+    return poster.title !== title
   })
-  console.log(cleanedUnmoposters)
+
   poster.remove()
+  return cleanedUnmoposters
 }
 // Why doesn't this save new data in the array? The array is 0 in the console log. 
 // Try to discover this when you know more someday
+// I had a strange set up, calling it ![poster.title]. It would do what was expected, but
+// it wouldn't return new info. I fixed it by placing the ! in the right place
 
 // On Page Load
 loadRandomPoster()
