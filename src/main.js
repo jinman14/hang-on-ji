@@ -1,8 +1,4 @@
 // Variables and Query Selectors
-var savedPosters = [];
-var cleanedUnmoposters = [];
-var currentPoster;
-
 var PicInput = document.querySelector('#poster-image-url')
 var TitleInput = document.querySelector('#poster-title')
 var QuoteInput = document.querySelector('#poster-quote')
@@ -245,6 +241,10 @@ let unmotivationalPosters = [
   }
 ];
 
+var savedPosters = [];
+var cleanedUnmoposters = [];
+var currentPoster;
+
 // EventListeners
 showRandomBtn.addEventListener("click", loadRandomPoster)
 makeOwnBtn.addEventListener('click', openMakeOwn)
@@ -285,6 +285,8 @@ function loadRandomPoster() {
   
   currentPoster = createPoster(randomImage, randomTitle, randomQuote);
 }
+// These querySelectors should have been turned into variables and put at the top. 
+// Same with the one below. 
 
 function openMakeOwn() {
   mainPoster.classList.add('hidden')
@@ -311,6 +313,8 @@ function backToMain() {
   savedPostersPage.classList.add('hidden')
   mainPoster.classList.remove('hidden')
 }
+// These buttons could have been refactored into one, a function that accepts arguments
+// and therefore can change any page
 
 function makePoster() {
 
@@ -380,9 +384,11 @@ function deleteUnMo() {
   cleanedUnmoposters = cleanedUnmoposters.filter((poster) => {
     ![poster.title] === title
   })
-  
+  console.log(cleanedUnmoposters)
   poster.remove()
 }
+// Why doesn't this save new data in the array? The array is 0 in the console log. 
+// Try to discover this when you know more someday
 
 // On Page Load
 loadRandomPoster()
